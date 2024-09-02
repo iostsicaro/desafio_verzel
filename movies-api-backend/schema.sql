@@ -1,4 +1,4 @@
-CREATE DATABASE desafio_verzel:
+CREATE DATABASE desafio_verzel;
 
 DROP TABLE IF EXISTS users;
 
