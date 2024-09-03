@@ -13,11 +13,9 @@ const listGenres = async (req, res) => {
 
         return res.status(200).json(genresTmdb.data);
     } catch (error) {
-        const { data: { errors }, status } = error.response;
-
-        return res.status(status).json({
-            erro: `${errors[0].parameter_name} - ${errors[0].message}`
-        });
+        const { data: { status_message }, status } = error.response;
+        
+        return res.status(status).json(status_message);
     }
 };
 
