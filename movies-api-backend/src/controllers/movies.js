@@ -15,10 +15,6 @@ const listMovies = async (req, res) => {
     }
 }
 
-const addMovies = async (req, res) => {
-
-}
-
 const searchMovies = async (req, res) => {
 
 }
@@ -33,4 +29,7 @@ const removeFavorites = async (req, res) => {
 
 module.exports = {
     listMovies,
+    searchMovies,
+    addFavorites,
+    removeFavorites,
 };
