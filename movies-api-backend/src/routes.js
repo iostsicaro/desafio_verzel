@@ -14,7 +14,7 @@ routes.post('/user', registerUser);
 routes.post('/login-user', login);
 
 // MIDDLEWARE VERIFYING LOGIN
-rotas.use(loginMiddleware);
+routes.use(loginMiddleware);
 
 // GENRES ROUTES
 routes.get('/listgenres', listGenres);
