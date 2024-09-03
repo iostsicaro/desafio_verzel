@@ -4,7 +4,7 @@ import { AuthProvider } from './context/AuthContext';
 import { MoviesProvider } from './context/MoviesContext';
 import useAuth from './hooks/useAuth';
 import Login from './pages/Login';
-import Cadastro from './pages/Cadastro';
+import UserRegister from './pages/UserRegister';
 import Dashboard from './pages/Dashboard';
 
 function RotasProtegidas({ children }) {
@@ -19,7 +19,7 @@ function Rotas() {
                 <Router>
                     <Routes>
                         <Route path="/cadastro" element={<Login />} />
-                        <Route path="/" element={<Cadastro />} />
+                        <Route path="/" element={<UserRegister />} />
                         <Route
                             path="/restaurantes"
                             element={
