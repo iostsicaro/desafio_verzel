@@ -1,8 +1,10 @@
 const express = require('express');
-const books = require('./controllers/movies')
+const movies = require('./controllers/movies');
+const moviesGenres = require('./controllers/movieGenres');
 
 const routes = express();
 
-routes.get('/listarfilmes', books.listarFilmes)
+routes.get('/listmovies', movies.listMovies);
+routes.get('/listgenres', moviesGenres.listGenres);
 
 module.exports = routes;
