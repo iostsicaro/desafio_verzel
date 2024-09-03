@@ -1,10 +1,28 @@
 const express = require('express');
-const movies = require('./controllers/movies');
-const moviesGenres = require('./controllers/movieGenres');
+const loginMiddleware = require('./middlewares/loginMiddleware');
+const { login } = require('./controllers/login');
+const { registerUser } = require('./controllers/user');
+const { listMovies, addFavorites, removeFavorite, searchMovies } = require('./controllers/movies');
+const { listGenres } = require('./controllers/movieGenres');
 
 const routes = express();
 
-routes.get('/listmovies', movies.listMovies);
-routes.get('/listgenres', moviesGenres.listGenres);
+// USER REGISTER ROUTE
+routes.post('/user', registerUser);
+
+// LOGIN ROUTE
+routes.post('/login-user', login);
+
+// MIDDLEWARE VERIFYING LOGIN
+rotas.use(loginMiddleware);
+
+// GENRES ROUTES
+routes.get('/listgenres', listGenres);
+
+// MOVIES ROUTES
+routes.get('/listmovies', listMovies);
+routes.get('/searchmovies', searchMovies);
+routes.post('/add-favorite', addFavorites);
+routes.delete('/remove-favorite/:id', removeFavorite);
 
 module.exports = routes;
