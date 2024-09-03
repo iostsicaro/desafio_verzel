@@ -6,7 +6,7 @@ const listGenres = async (req, res) => {
         const genresTmdb = await instanceAxios.get('genre/movie/list');
 
         if (!genresTmdb.data) {
-            const genresDatabase = await knex('genres');
+            const genresDatabase = await knex('genre');
 
             return res.status(200).json(genresDatabase)
         }
