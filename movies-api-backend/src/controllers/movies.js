@@ -1,19 +1,36 @@
+const knex = require('../connection');
 const instanceAxios = require('../services/tmdb');
 
-const listarFilmes = async (req, res) => {
+const listMovies = async (req, res) => {
     try {
         const filmes = await instanceAxios.get('movie/popular');
 
-        return res.json(filmes.data);
+        return res.status(200).json(filmes.data);
     } catch (error) {
         const { data: { errors }, status } = error.response;
 
         return res.status(status).json({
             erro: `${errors[0].parameter_name} - ${errors[0].message}`
-        })
+        });
     }
 }
 
+const addMovies = async (req, res) => {
+
+}
+
+const searchMovies = async (req, res) => {
+
+}
+
+const addFavorites = async (req, res) => {
+
+}
+
+const removeFavorites = async (req, res) => {
+
+}
+
 module.exports = {
-    listarFilmes,
+    listMovies,
 };
