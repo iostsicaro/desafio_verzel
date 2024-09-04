@@ -19,7 +19,7 @@
     --verde-sucesso: #006335;
     --cinza: #E5E5E5;
     --branco: #FFFFFF;
-    
+
     /* Fontes */
     --montserrat: 'Montserrat', sans-serif;
 }
@@ -35,6 +35,12 @@
 body {
     height: 100%;
     width: 100vw;
+}
+
+a {
+    color: var(--azul-link);
+    font-family: inherit;
+    font-size: inherit;
 }
 
 .base {
