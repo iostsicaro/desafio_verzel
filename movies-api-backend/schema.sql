@@ -1,4 +1,4 @@
-CREATE DATABASE desafio_verzel;
+CREATE DATABASE desafio_verzel:
 
 DROP TABLE IF EXISTS users;
 
@@ -21,8 +21,8 @@ DROP TABLE IF EXISTS movies;
 CREATE TABLE movies (
   id serial NOT NULL PRIMARY KEY,
   title varchar(100) NOT NULL,
-  description varchar(300) NOT NULL,
-  genre_ids integer[] NOT NULL,
+  description varchar(8000) NOT NULL,
+  popularity double precision NOT NULL,
   url_image varchar(255)
 );
 
@@ -59,4 +59,3 @@ VALUES
 (53, 'Thriller'),
 (10752, 'Guerra'),
 (37, 'Faroeste');
-
