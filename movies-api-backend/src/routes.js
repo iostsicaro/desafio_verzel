@@ -11,7 +11,7 @@ const routes = express();
 routes.post('/user', registerUser);
 
 // LOGIN ROUTE
-routes.post('/login-user', login);
+routes.post('/login', login);
 
 // MIDDLEWARE VERIFYING LOGIN
 routes.use(loginMiddleware);
