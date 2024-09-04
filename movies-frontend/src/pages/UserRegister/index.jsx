@@ -1,17 +1,17 @@
 import React, { useState } from 'react';
 import { NavLink, useNavigate } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
-import { post } from '../../services/ApiClient';
+import { post } from '../../services/MoviesApiClient';
 import './styles.css';
-import InputSenha from '../../components/InputSenha';
-import InputTexto from '../../components/InputTexto';
-import Snackbar from '../../components/Snackbar';
+import InputPassword from '../../components/InputPassword/index';
+import InputText from '../../components/InputText/index';
+import Snackbar from '../../components/SnackBar/index';
 
 export default function UserRegister() {
     const [mensagem, setMensagem] = useState('');
     const [openSnack, setOpenSnack] = useState(false);
     const { register, handleSubmit, formState, getValues } = useForm();
-    const navigate = useNavigate();  // Substitui useHistory
+    const navigate = useNavigate();
 
     async function onSubmit(data) {
         if (data.senha !== data.senhaRepetida) {
@@ -35,7 +35,7 @@ export default function UserRegister() {
                 return;
             }
 
-            navigate('/');  // Substitui history.push('/')
+            navigate('/'); 
         } catch (error) {
             setMensagem({ texto: error.message, status: 'erro' });
             setOpenSnack(true);
@@ -54,35 +54,30 @@ export default function UserRegister() {
                     onSubmit={handleSubmit(onSubmit)}
                 >
                     <div className="form-um">
-                        <InputTexto
-                            label="Nome do usuário"
-                            {...register('nome')}
+                        <InputText
+                            label="Username"
+                            placeholder="Type your name"
+                            {...register('name')}
                         />
 
-                        <InputTexto
-                            label="Email"
-                            {...register('email',
-                                {
-                                    minLength: { value: 3, message: 'Email inválido' },
-                                })}
+                        <InputText
+                            label="E-mail"
+                            placeholder="Type your e-mail"
+                            {...register('email', {
+                                minLength: { value: 3, message: 'Invalid e-mail' },
+                            })}
                         />
 
-                        <InputTexto
-                            label="Telefone"
-                            {...register('telefone',
-                                {
-                                    minLength: { value: 8, message: 'O telefone deverá ter ao menos 8 caracteres' },
-                                })}
+                        <InputPassword
+                            label="Password"
+                            placeholder="Type your password"
+                            {...register('password')}
                         />
 
-                        <InputSenha
-                            label="Senha"
-                            {...register('senha')}
-                        />
-
-                        <InputSenha
-                            label="Repita a senha"
-                            {...register('senhaRepetida')}
+                        <InputPassword
+                            label="Password"
+                            placeholder="Type your password"
+                            {...register('password')}
                         />
                     </div>
 
@@ -98,17 +93,19 @@ export default function UserRegister() {
                     <div className="link-box">
                         <span>Já tem uma conta? </span>
                         <NavLink to="/">
-                            . Login</NavLink>
+                            Login</NavLink>
                     </div>
                 </form>
             </div>
-            
+
             <div className="ilustracao" />
-            {mensagem && <Snackbar
-                mensagem={mensagem}
-                openSnack={openSnack}
-                setOpenSnack={setOpenSnack}
-            />}
+            {mensagem && (
+                <Snackbar
+                    mensagem={mensagem}
+                    openSnack={openSnack}
+                    setOpenSnack={setOpenSnack}
+                />
+            )}
         </div>
     );
 }
