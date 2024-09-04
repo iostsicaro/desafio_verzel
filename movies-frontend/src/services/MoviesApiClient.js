@@ -1,4 +1,4 @@
-const BASE_URL = 'http://localhost:2999/';
+const BASE_URL = 'http://localhost:3000/';
 
 const request = async (resource, { method, data, token } = {}) => {
   const headers = {
