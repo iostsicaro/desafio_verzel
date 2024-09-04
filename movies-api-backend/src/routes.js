@@ -8,7 +8,7 @@ const { listGenres } = require('./controllers/movieGenres');
 const routes = express();
 
 // USER REGISTER ROUTE
-routes.post('/user', registerUser);
+routes.post('/register', registerUser);
 
 // LOGIN ROUTE
 routes.post('/login', login);

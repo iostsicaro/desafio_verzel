@@ -11,7 +11,7 @@ const login = async (req, res) => {
     }
 
     try {
-        const user = await knex('user').where({ email: email }).first();
+        const user = await knex('users').where({ email: email }).first();
 
         if (!user) {
             return res.status(400).json("User not found");
@@ -37,7 +37,7 @@ const login = async (req, res) => {
             token
         })
     } catch (error) {
-        return res.status(400).json(error.message);
+        return res.status(400).json('USER NOT FOUND');
     }
 }
 

@@ -14,7 +14,7 @@ const loginMiddleware = async (req, res, next) => {
 
         const { id } = jwt.verify(token, hashPassword);
 
-        const verifyUser = await knex('user').where({ id: id }).first();
+        const verifyUser = await knex('users').where({ id: id }).first();
 
         if (!verifyUser) {
             return res.status.json('User not found.')

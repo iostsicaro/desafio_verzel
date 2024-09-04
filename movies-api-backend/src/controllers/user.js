@@ -5,7 +5,7 @@ const registerUser = async (req, res) => {
     const { name, email, password } = req.body;
 
     try {
-        const verifyUserEmail = await knex('user').where({ email }).first();
+        const verifyUserEmail = await knex('users').where({ email }).first();
 
         if (verifyUserEmail) {
             return res.status(400).json('E-mail already in use')
@@ -13,7 +13,7 @@ const registerUser = async (req, res) => {
 
         const criptographyPassword = await bcrypt.hash(password, 10);
 
-        const user = await knex('user').insert({ name, email, password: criptographyPassword });
+        const user = await knex('users').insert({ name, email, password: criptographyPassword });
 
         if (!user) {
             return res.status(404).json('Error 404')
