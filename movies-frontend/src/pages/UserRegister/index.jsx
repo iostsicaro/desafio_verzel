@@ -2,10 +2,12 @@ import React, { useState } from 'react';
 import { NavLink, useNavigate } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 import { post } from '../../services/MoviesApiClient';
-import './styles.css';
+
 import InputPassword from '../../components/InputPassword/index';
 import InputText from '../../components/InputText/index';
-import Snackbar from '../../components/SnackBar/index';
+import Snackbar from '../../components/Snackbar/index';
+
+import './styles.css';
 
 export default function UserRegister() {
     const [mensagem, setMensagem] = useState('');
@@ -83,7 +85,7 @@ export default function UserRegister() {
 
                     <div className="button-box">
                         <button
-                            className="aceitar"
+                            className="btn-movies"
                             type="submit"
                         >
                             Criar conta
