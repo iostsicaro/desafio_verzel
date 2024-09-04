@@ -18,10 +18,10 @@ function Rotas() {
             <MoviesProvider>
                 <Router>
                     <Routes>
-                        <Route path="/cadastro" element={<Login />} />
-                        <Route path="/" element={<UserRegister />} />
+                        <Route path="/" element={<Login />} />
+                        <Route path="/cadastro" element={<UserRegister />} />
                         <Route
-                            path="/restaurantes"
+                            path="/movies"
                             element={
                                 <RotasProtegidas>
                                     <Dashboard />
