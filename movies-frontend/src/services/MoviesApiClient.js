@@ -1,4 +1,4 @@
-const BASE_URL = 'http://localhost:2999/'; // Atualize para sua URL base
+const BASE_URL = 'http://localhost:2999/';
 
 const request = async (resource, { method, data, token } = {}) => {
   const headers = {
