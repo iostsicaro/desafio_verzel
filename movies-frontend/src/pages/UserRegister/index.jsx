@@ -10,45 +10,47 @@ import Snackbar from '../../components/Snackbar/index';
 import './styles.css';
 
 export default function UserRegister() {
-    const [mensagem, setMensagem] = useState('');
+    const [message, setMessage] = useState('');
     const [openSnack, setOpenSnack] = useState(false);
     const { register, handleSubmit, formState, getValues } = useForm();
     const navigate = useNavigate();
 
     async function onSubmit(data) {
-        if (data.senha !== data.senhaRepetida) {
-            const msg = 'Senhas não são iguais';
+        if (data.password !== data.repeatedPassword) {
+            const msg = 'Password are not the same';
 
-            setMensagem({ texto: msg, status: 'erro' });
-            setOpenSnack(true);
+            showError(msg);
             return;
         }
 
-        delete data.senhaRepetida;
+        delete data.repeatedPassword;
 
         try {
-            const resposta = await post('consumidor', data);
+            const resposta = await post('registeruser', data);
 
             if (!resposta.ok) {
                 const msg = await resposta.json();
 
-                setMensagem({ texto: msg, status: 'erro' });
-                setOpenSnack(true);
+                showError(msg);
                 return;
             }
 
             navigate('/'); 
         } catch (error) {
-            setMensagem({ texto: error.message, status: 'erro' });
-            setOpenSnack(true);
+            showError(error.message);
         }
+    }
+
+    function showError(texto) {
+        setMessage({ texto, status: 'erro' });
+        setOpenSnack(true);
     }
 
     return (
         <div className="img-cadastro">
             <div className="base cadastro">
                 <div className="title-box">
-                    <span className="titulo pagina">Cadastro</span>
+                    <span className="titulo pagina">Register</span>
                 </div>
 
                 <form
@@ -79,7 +81,7 @@ export default function UserRegister() {
                         <InputPassword
                             label="Password"
                             placeholder="Type your password"
-                            {...register('password')}
+                            {...register('repeatedPassword')}
                         />
                     </div>
 
@@ -88,12 +90,12 @@ export default function UserRegister() {
                             className="btn-movies"
                             type="submit"
                         >
-                            Criar conta
+                            Register
                         </button>
                     </div>
 
                     <div className="link-box">
-                        <span>Já tem uma conta? </span>
+                        <span>Already have an account? </span>
                         <NavLink to="/">
                             Login</NavLink>
                     </div>
@@ -101,9 +103,9 @@ export default function UserRegister() {
             </div>
 
             <div className="ilustracao" />
-            {mensagem && (
+            {message && (
                 <Snackbar
-                    mensagem={mensagem}
+                    message={message}
                     openSnack={openSnack}
                     setOpenSnack={setOpenSnack}
                 />
