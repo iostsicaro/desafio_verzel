@@ -12,21 +12,19 @@ import Snackbar from '../../components/Snackbar/index';
 import './styles.css';
 
 export default function Login() {
-    const [mensagem, setMensagem] = useState('');
+    const [message, setMessage] = useState('');
     const [openSnack, setOpenSnack] = useState(false);
     const { register, handleSubmit, formState: { errors } } = useForm();
-    const { logar } = useAuth();
-    const navigate = useNavigate(); // Substitui useHistory
+    const { login } = useAuth();
+    const navigate = useNavigate();
 
     useEffect(() => {
         if (errors.email) {
-            setMensagem({ texto: errors.email.message, status: 'erro' });
-            setOpenSnack(true);
+            showError(errors.email.message);
         }
 
-        if (errors.senha) {
-            setMensagem({ texto: errors.senha.message, status: 'erro' });
-            setOpenSnack(true);
+        if (errors.password) {
+            showError(errors.password.message);
         }
     }, [errors]);
 
@@ -36,23 +34,28 @@ export default function Login() {
 
             if (!resposta.ok) {
                 const msg = await resposta.json();
-                setMensagem({ texto: msg, status: 'erro' });
-                setOpenSnack(true);
+                
+                showError(msg);
                 return;
             }
 
             const { token } = await resposta.json();
-            logar(token);
+            login(token);
+
             navigate('/movies');
         } catch (error) {
-            setMensagem({ texto: error.message, status: 'erro' });
-            setOpenSnack(true);
+            showError(error.message);
         }
+    }
+
+    function showError(texto) {
+        setMessage({ texto, status: 'erro' });
+        setOpenSnack(true);
     }
 
     return (
         <div className="img-login">
-            <img className="ilustracao" src={IllustrationLogin} alt="Ilustração Login" />
+            <img className="ilustracao" src={IllustrationLogin} alt="Illustration Login" />
 
             <div className="base login">
                 <div className="title-box">
@@ -61,36 +64,36 @@ export default function Login() {
 
                 <form onSubmit={handleSubmit(onSubmit)}>
                     <InputText
-                        label="Email"
+                        label="E-mail"
                         {...register('email', {
-                            required: 'Email é um campo obrigatório',
-                            minLength: { value: 3, message: 'Email inválido' },
+                            required: 'E-mail is a mandatory field',
+                            minLength: { value: 3, message: 'Invalid e-mail' },
                         })}
                     />
 
                     <InputPassword
-                        label="Senha"
-                        {...register('senha', {
-                            required: 'Senha é um campo obrigatório',
-                            minLength: { value: 5, message: 'A senha deverá ter pelo menos cinco caracteres' },
+                        label="Password"
+                        {...register('password', {
+                            required: 'Password is a mandatory field',
+                            minLength: { value: 5, message: 'The password must be at least five characters long' },
                         })}
                     />
 
                     <div className="button-box">
                         <button className="btn-movies" type="submit">
-                            Entrar
+                            Log-in
                         </button>
                     </div>
 
                     <div className="link-box">
-                        <span>Ainda não tem uma conta? </span>
-                        <NavLink to="/cadastro">Cadastre-se</NavLink>
+                        <span>Don't have an account yet? </span>
+                        <NavLink to="/cadastro">Register</NavLink>
                     </div>
                 </form>
             </div>
 
             <Snackbar
-                mensagem={mensagem}
+                message={message}
                 openSnack={openSnack}
                 setOpenSnack={setOpenSnack}
             />
