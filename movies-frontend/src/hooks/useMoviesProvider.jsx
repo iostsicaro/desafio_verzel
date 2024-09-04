@@ -21,6 +21,12 @@ export default function useMoviesProvider() {
         }
     };
 
+    const removeMovie = (movieId) => {
+        const updatedMovies = movies.filter(mov => mov.id !== movieId);
+        setMovies(updatedMovies);
+        setMoviesPersisted(updatedMovies);
+    };
+
     const removeFavorite = (movieId) => {
         const updatedFavorites = favorites.filter(fav => fav.id !== movieId);
         setFavorites(updatedFavorites);
@@ -32,6 +38,7 @@ export default function useMoviesProvider() {
         favorites,
         addMovie,
         addFavorite,
-        removeFavorite,
+        removeMovie,
+        removeFavorite
     };
 }
