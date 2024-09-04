@@ -1,0 +1,14 @@
+.titulo {
+    font-family: var(--baloo);
+    font-weight: 400;
+}
+
+.movies {
+    color: var(--branco);
+    font-size: 4rem;
+}
+
+.pagina {
+    color: var(--laranja-intenso);
+    font-size: 3.2rem;
+}
