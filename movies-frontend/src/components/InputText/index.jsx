@@ -1,19 +1,18 @@
 import React, { forwardRef } from 'react';
 import './styles.css';
 
-const InputText = forwardRef(({ label, placeholder, name, onChange, onBlur }, ref) => {
+const InputText = forwardRef((props, ref) => {
     return (
         <div className="flex-column">
-            <label htmlFor={name}>{label}</label>
+            <label htmlFor={props.name}>{props.label}</label>
 
             <input
-                id={name}
+                id={props.name}
                 type="text"
-                placeholder={placeholder}
-                name={name}
-                onChange={onChange}
-                onBlur={onBlur}
-                ref={ref}
+                placeholder={props.placeholder}
+                name={props.name}
+                value={props.value}
+                onChange={(e) => props.setValue(e.target.value)}
             />
         </div>
     );

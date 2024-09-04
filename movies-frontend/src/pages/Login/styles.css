@@ -7,7 +7,7 @@
     overflow: hidden;
 }
 
-.ilustracao{
+.ilustracao {
     position: absolute;
     z-index: 0;
     height: 70rem;
@@ -15,7 +15,7 @@
     top: 3rem;
 }
 
-.login{
+.login {
     position: relative;
     z-index: 1;
     display: flex;
@@ -27,23 +27,31 @@
     padding: 5rem 4rem;
 }
 
-.login .title-box{
+.login .title-box {
     display: flex;
     margin-bottom: 7rem;
 }
 
-.login form{
- display: flex;
- flex-direction: column;
- gap: 4.9rem;
+.login form {
+    display: flex;
+    flex-direction: column;
+    gap: 4.9rem;
 }
 
-.button-box, .link-box {
+.button-box,
+.link-box {
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
-.link-box, .link-box span {
+.link-box,
+.link-box span {
     font-size: 1.5rem;
+}
+
+.error-message {
+    color: red;
+    font-size: 8px;
+    padding: 0px;
 }

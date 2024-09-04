@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { NavLink, useNavigate } from 'react-router-dom';
-import { useForm } from 'react-hook-form';
 import { post } from '../../services/MoviesApiClient';
 
 import InputPassword from '../../components/InputPassword/index';
@@ -10,23 +9,33 @@ import Snackbar from '../../components/Snackbar/index';
 import './styles.css';
 
 export default function UserRegister() {
+    const [name, setName] = useState('');
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+    const [passwordRepeated, setPasswordRepeated] = useState('');
     const [message, setMessage] = useState('');
     const [openSnack, setOpenSnack] = useState(false);
-    const { register, handleSubmit, formState, getValues } = useForm();
     const navigate = useNavigate();
 
-    async function onSubmit(data) {
-        if (data.password !== data.repeatedPassword) {
+    async function handleSubmit(event) {
+        event.preventDefault();
+
+        if (password !== passwordRepeated) {
             const msg = 'Password are not the same';
 
             showError(msg);
             return;
         }
 
-        delete data.repeatedPassword;
+        const createUser = {
+            name,
+            email,
+            password,
+        }
 
         try {
-            const resposta = await post('registeruser', data);
+            console.log(createUser)
+            const resposta = await post('register', createUser);
 
             if (!resposta.ok) {
                 const msg = await resposta.json();
@@ -42,8 +51,8 @@ export default function UserRegister() {
     }
 
     function showError(texto) {
-        setMessage({ texto, status: 'erro' });
         setOpenSnack(true);
+        setMessage({ texto, status: 'erro' });
     }
 
     return (
@@ -53,35 +62,37 @@ export default function UserRegister() {
                     <span className="titulo pagina">Register</span>
                 </div>
 
-                <form
-                    className="formulario"
-                    onSubmit={handleSubmit(onSubmit)}
-                >
+                <form>
                     <div className="form-um">
                         <InputText
-                            label="Username"
-                            placeholder="Type your name"
-                            {...register('name')}
+                            label="Nome"
+                            placeholder="Enter your email"
+                            value={name}
+                            setValue={setName}
                         />
 
                         <InputText
                             label="E-mail"
-                            placeholder="Type your e-mail"
-                            {...register('email', {
-                                minLength: { value: 3, message: 'Invalid e-mail' },
-                            })}
+                            name="email"
+                            placeholder="Enter your email"
+                            value={email}
+                            setValue={setEmail}
                         />
 
                         <InputPassword
                             label="Password"
-                            placeholder="Type your password"
-                            {...register('password')}
+                            name="password"
+                            placeholder="Enter your password"
+                            value={password}
+                            setValue={setPassword}
                         />
 
                         <InputPassword
                             label="Password"
-                            placeholder="Type your password"
-                            {...register('repeatedPassword')}
+                            name="passwordRepeated"
+                            placeholder="Enter your password"
+                            value={passwordRepeated}
+                            setValue={setPasswordRepeated}
                         />
                     </div>
 
@@ -89,6 +100,7 @@ export default function UserRegister() {
                         <button
                             className="btn-movies"
                             type="submit"
+                            onClick={(event) => handleSubmit(event)}
                         >
                             Register
                         </button>

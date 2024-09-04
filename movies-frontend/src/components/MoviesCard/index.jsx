@@ -1,30 +1,47 @@
-import React from 'react';
+import React, { useState } from 'react';
+
+import IconHeart from '../../assets/icon-heart-black.svg';
+import IconHeartFilled from '../../assets/icon-heart-filled.svg';
+
 import './styles.css';
 
 export default function MoviesCard({ movie, onClick }) {
     const {
-        id,
         title,
-        description,
+        overview,
         popularity,
         url_image
     } = movie;
+    const [isFavorite, setFavorite] = useState(false);
 
-    const handleClick = () => onClick(movie);
+    function handleFavorite() {
+        if (!isFavorite) {
+            setFavorite(true);
+        } else {
+            setFavorite(false);
+        }
+    }
 
     return (
-        <div className="card-container" style={{ position: 'relative' }} onClick={handleClick}>
-            <div className="card-content">
-                <div className="flex-column">
-                    <span className="card-titulo">{title}</span>
-                    <span className="card-texto">{description}</span>
-                    <div className="card-preco">{popularity}</div>
-                </div>
-                
-                <div className="imagem-card">
-                    <img src={url_image} alt={title} />
+        <>
+            <div className="card-container">
+                <div className="card-content">
+                    <div className="text-content">
+                        <span className="card-title">{title}</span>
+                        <span className="card-description">{overview}</span>
+                        <div className="card-popularity">{popularity}</div>
+                        <img
+                            src={isFavorite ? IconHeartFilled : IconHeart}
+                            alt="coração"
+                            className='card-heart'
+                            onClick={() => handleFavorite()}
+                        />
+                    </div>
+                    <div className="image-container">
+                        <img src={url_image} alt={title} className="card-image" />
+                    </div>
                 </div>
             </div>
-        </div>
+        </>
     );
 }

@@ -1,6 +1,5 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { NavLink, useNavigate } from 'react-router-dom';
-import { useForm } from 'react-hook-form';
 import useAuth from '../../hooks/useAuth';
 import { post } from '../../services/MoviesApiClient';
 
@@ -14,32 +13,41 @@ import './styles.css';
 export default function Login() {
     const [message, setMessage] = useState('');
     const [openSnack, setOpenSnack] = useState(false);
-    const { register, handleSubmit, formState: { errors } } = useForm();
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
     const { login } = useAuth();
     const navigate = useNavigate();
 
-    useEffect(() => {
-        if (errors.email) {
-            showError(errors.email.message);
+    async function handleSubmit(event) {
+        event.preventDefault();
+
+        const loginUser = {
+            email,
+            password,
+        };
+
+        if (!email && !password) {
+            showError('All data must be filled in')
         }
 
-        if (errors.password) {
-            showError(errors.password.message);
-        }
-    }, [errors]);
-
-    async function onSubmit(data) {
         try {
-            const resposta = await post('login', data);
+            console.log(loginUser)
+            const resposta = await post('login', loginUser);
 
             if (!resposta.ok) {
                 const msg = await resposta.json();
+
+                if (!msg) {
+                    showError(resposta.statusText);
+                } else {
+                    showError(msg);
+                }
                 
-                showError(msg);
                 return;
             }
 
             const { token } = await resposta.json();
+
             login(token);
 
             navigate('/movies');
@@ -62,25 +70,25 @@ export default function Login() {
                     <span className="titulo pagina">Login</span>
                 </div>
 
-                <form onSubmit={handleSubmit(onSubmit)}>
+                <form>
                     <InputText
                         label="E-mail"
-                        {...register('email', {
-                            required: 'E-mail is a mandatory field',
-                            minLength: { value: 3, message: 'Invalid e-mail' },
-                        })}
+                        name="email"
+                        placeholder="Enter your email"
+                        value={email}
+                        setValue={setEmail}
                     />
 
                     <InputPassword
                         label="Password"
-                        {...register('password', {
-                            required: 'Password is a mandatory field',
-                            minLength: { value: 5, message: 'The password must be at least five characters long' },
-                        })}
+                        name="password"
+                        placeholder="Enter your password"
+                        value={password}
+                        setValue={setPassword}
                     />
 
                     <div className="button-box">
-                        <button className="btn-movies" type="submit">
+                        <button className="btn-movies" type="submit" onClick={(event) => handleSubmit(event)}>
                             Log-in
                         </button>
                     </div>
@@ -92,11 +100,13 @@ export default function Login() {
                 </form>
             </div>
 
-            <Snackbar
-                message={message}
-                openSnack={openSnack}
-                setOpenSnack={setOpenSnack}
-            />
+            {message && (
+                <Snackbar
+                    message={message}
+                    openSnack={openSnack}
+                    setOpenSnack={setOpenSnack}
+                />
+            )}
         </div>
     );
 }

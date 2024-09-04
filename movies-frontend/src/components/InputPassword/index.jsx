@@ -3,7 +3,7 @@ import './styles.css';
 import IconEyeOpen from '../../assets/openEye.svg';
 import IconEyeClosed from '../../assets/closedEye.svg';
 
-const InputPassword = forwardRef(({ label, placeholder, passwordValue, onChange, onBlur }, ref) => {
+const InputPassword = forwardRef((props, ref) => {
     const [showPassword, setShowPassword] = useState(false);
 
     const toggleShowPassword = () => {
@@ -12,16 +12,15 @@ const InputPassword = forwardRef(({ label, placeholder, passwordValue, onChange,
 
     return (
         <div className="flex-column input-password">
-            <label htmlFor={passwordValue}>{label}</label>
+            <label htmlFor={props.name}>{props.label}</label>
 
             <input
-                id={passwordValue}
+                id={props.name}
                 type={showPassword ? 'text' : 'password'}
-                placeholder={placeholder}
-                name={passwordValue}
-                onChange={onChange}
-                onBlur={onBlur}
-                ref={ref}
+                placeholder={props.placeholder}
+                name={props.name}
+                value={props.value}
+                onChange={(e) => props.setValue(e.target.value)}
             />
 
             <img

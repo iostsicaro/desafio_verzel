@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useLocalStorage } from 'react-use';
 
 export default function useAuthProvider() {
@@ -14,6 +14,18 @@ export default function useAuthProvider() {
         setToken(null);
         removeStoredToken();
     };
+
+    useEffect(() => {
+        const handleBeforeUnload = () => {
+            removeStoredToken();
+        };
+
+        window.addEventListener('beforeunload', handleBeforeUnload);
+
+        return () => {
+            window.removeEventListener('beforeunload', handleBeforeUnload);
+        };
+    }, [removeStoredToken]);
 
     return {
         token,

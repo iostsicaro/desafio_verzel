@@ -3,27 +3,24 @@ import { get } from '../../services/MoviesApiClient';
 import useAuth from '../../hooks/useAuth';
 
 import MoviesCard from '../../components/MoviesCard/index';
-import ModalMovie from '../../components/ModalMovies/index';
-import InputBusca from '../../components/InputBusca';
-import Cabecalho from '../../components/Cabecalho';
+import InputSearch from '../../components/InputSearch';
+import NavMenu from '../../components/NavMenu';
 import Snackbar from '../../components/Snackbar';
 
 import './styles.css';
 
-
 export default function Dashboard() {
     const { token } = useAuth();
-
-    const [movies, setMovies] = useState('');
+    const [movies, setMovies] = useState([]);
     const [movieSelected, setMovieSelected] = useState('');
     const [search, setSearch] = useState('');
     const [message, setMessage] = useState('');
     const [openSnack, setOpenSnack] = useState(false);
     const [openModal, setOpenModal] = useState(false);
 
-    async function listMovies(search, filter) {
+    async function listMovies(search) {
         try {
-            const url = `listmovies`
+            const url = 'listmovies'
             const data = await get(url, token)
 
             const response = await data.json();
@@ -39,8 +36,8 @@ export default function Dashboard() {
     }, [search]);
 
     function showError(texto) {
-        setMessage({ texto, status: 'erro' });
         setOpenSnack(true);
+        setMessage({ texto, status: 'erro' });
     }
 
     function showModal(movie) {
@@ -48,41 +45,34 @@ export default function Dashboard() {
         setOpenModal(true);
     }
 
-    function back() {
-        setSearch('');
-        setOpenModal(false);
-        setMessage('');
-        setOpenSnack(false);
-    }
-
     return (
         <div>
-            <ModalMovie
-                movie={movieSelected}
-                abrirModal={openModal}
-                setOpenModal={setOpenModal}
-            />
-
             <div className={(openModal) && 'blurry'}>
-                <Cabecalho />
+                <NavMenu />
 
                 <div className="form-search">
                     <form>
-                        <InputBusca value={search} setValue={setSearch} />
+                        <InputSearch placeholder={'Search movies'} value={search} setValue={setSearch} />
                     </form>
                 </div>
 
-                <div className={`container-movies ${movies ? '' : 'hide'}`}>
-                    {movies && movies.map(movie => (
-                        <MoviesCard key={movie.title} movie={movie} onClick={showModal(movie)} />
+                <div className={`container-movies ${movies.length > 0 ? '' : 'hide'}`}>
+                    {movies.map((movie) => (
+                        <MoviesCard
+                            key={movie.title}
+                            movie={movie}
+                            onClick={() => showModal(movie)} // Corrigido aqui
+                        />
                     ))}
                 </div>
 
-                <Snackbar
-                    message={message}
-                    openSnack={openSnack}
-                    setOpenSnack={setOpenSnack}
-                />
+                {message && (
+                    <Snackbar
+                        message={message}
+                        openSnack={openSnack}
+                        setOpenSnack={setOpenSnack}
+                    />
+                )}
             </div>
         </div>
     );

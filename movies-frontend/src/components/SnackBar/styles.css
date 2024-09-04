@@ -1,7 +1,7 @@
 .snackbar {
     position: fixed;
     bottom: 1vh;
-    z-index: 3;
+    z-index: 1000;
     left: 0;
     right: 0;
     margin: 0 auto 0 auto;
@@ -17,15 +17,15 @@
 }
 
 .aberta {
-    min-width: 20vw;
-    min-height: 8vh;
+    min-width: 30vw;
+    min-height: 5vh;
     padding: 1.5rem;
     cursor: pointer;
 }
 
 .aberta span {
+    display: block;
     margin: 0 auto 0 auto;
-    margin-left: 2rem;
     font-size: 0.9vw;
 }
 
