@@ -43,7 +43,7 @@ Este projeto foi desenvolvido como parte do desafio para a vaga de Desenvolvedor
 
 1. **Clone o repositório:**
    ```bash
-   [git clone https://github.com/seu-usuario/gerenciamento-filmes.git](https://github.com/iostsicaro/desafio_verzel.git)
+   git clone https://github.com/iostsicaro/desafio_verzel.git
    cd desafio_verzel
 
 2. **Instale as dependências do backend:**
