@@ -15,17 +15,17 @@ export default function useAuthProvider() {
         removeStoredToken();
     };
 
-    useEffect(() => {
-        const handleBeforeUnload = () => {
-            removeStoredToken();
-        };
+    // useEffect(() => {
+    //     const handleBeforeUnload = () => {
+    //         removeStoredToken();
+    //     };
 
-        window.addEventListener('beforeunload', handleBeforeUnload);
+    //     window.addEventListener('beforeunload', handleBeforeUnload);
 
-        return () => {
-            window.removeEventListener('beforeunload', handleBeforeUnload);
-        };
-    }, [removeStoredToken]);
+    //     return () => {
+    //         window.removeEventListener('beforeunload', handleBeforeUnload);
+    //     };
+    // }, [removeStoredToken]);
 
     return {
         token,
