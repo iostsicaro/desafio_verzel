@@ -3,15 +3,15 @@ const instanceAxios = require('../services/tmdb');
 
 const listGenres = async (req, res) => {
     try {
-        const genresTmdb = await instanceAxios.get('genre/movie/list');
-
-        if (!genresTmdb.data) {
+        const { data: { genres: genres } } = await instanceAxios.get('genre/movie/list');
+        
+        if (!genres) {
             const genresDatabase = await knex('genre');
 
-            return res.status(200).json(genresDatabase)
+            return res.status(200).json(genresDatabase);
         }
 
-        return res.status(200).json(genresTmdb.data);
+        return res.status(200).json(genres);
     } catch (error) {
         const { data: { status_message }, status } = error.response;
         
