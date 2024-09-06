@@ -63,7 +63,7 @@ const findMovieById = async (req, res) => {
 }
 
 const searchMovies = async (req, res) => {
-    const { search } = req.body;
+    const { search } = req.query;
 
     try {
         const { data: { results: movie } } = await instanceAxios.get(`search/movie?query=${search}`);
