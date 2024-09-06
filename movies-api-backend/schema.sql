@@ -23,6 +23,7 @@ CREATE TABLE movies (
   title varchar(100) NOT NULL,
   description varchar(8000) NOT NULL,
   popularity double precision NOT NULL,
+  release_date DATE NOT NULL,
   url_image varchar(255)
 );
 
