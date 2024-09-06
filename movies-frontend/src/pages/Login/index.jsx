@@ -31,7 +31,6 @@ export default function Login() {
         }
 
         try {
-            console.log(loginUser)
             const resposta = await post('login', loginUser);
 
             if (!resposta.ok) {
