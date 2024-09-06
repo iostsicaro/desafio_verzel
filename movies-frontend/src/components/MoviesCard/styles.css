@@ -64,8 +64,8 @@
 }
 
 .card-image {
-    width: 100%;
-    height: auto;
+    width: 850px;
+    height: 550px;
     border-radius: 0.8rem;
     border: 0.2rem solid #FB3B0033;
 }
@@ -87,7 +87,7 @@
     }
 
     .card-image {
-        width: 100%;
-        height: 150px;
+        width: 250px;
+        height: auto;
     }
 }
