@@ -12,27 +12,29 @@ import './styles.css';
 export default function Dashboard() {
     const { token } = useAuth();
     const [movies, setMovies] = useState([]);
-    const [movieSelected, setMovieSelected] = useState('');
+    //const [movieSelected, setMovieSelected] = useState('');
     const [search, setSearch] = useState('');
     const [message, setMessage] = useState('');
     const [openSnack, setOpenSnack] = useState(false);
     const [openModal, setOpenModal] = useState(false);
 
-    async function listMovies(search) {
-        try {
-            const url = 'listmovies'
-            const data = await get(url, token)
+    async function listOrSearchMovies(search) {
+        const url = search ? 'searchmovies' : 'listmovies';
 
+        try {
+            const data = await get(url, search ? { search: search } : {}, token);
             const response = await data.json();
 
             setMovies(response);
+            return;
         } catch (error) {
             showError(error.message);
         }
     }
 
     useEffect(() => {
-        listMovies(search)
+        listOrSearchMovies(search)
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [search]);
 
     function showError(texto) {
@@ -41,7 +43,7 @@ export default function Dashboard() {
     }
 
     function showModal(movie) {
-        setMovieSelected(movie)
+        //setMovieSelected(movie)
         setOpenModal(true);
     }
 
@@ -51,17 +53,15 @@ export default function Dashboard() {
                 <NavMenu />
 
                 <div className="form-search">
-                    <form>
-                        <InputSearch placeholder={'Search movies'} value={search} setValue={setSearch} />
-                    </form>
+                    <InputSearch placeholder={'Search movies'} value={search} setValue={setSearch} onChange={() => listOrSearchMovies(search)} />
                 </div>
 
                 <div className={`container-movies ${movies.length > 0 ? '' : 'hide'}`}>
-                    {movies.map((movie) => (
+                    {movies.map((movie, index) => (
                         <MoviesCard
-                            key={movie.title}
+                            key={index}
                             movie={movie}
-                            onClick={() => showModal(movie)} // Corrigido aqui
+                            onClick={() => showModal(movie)}
                         />
                     ))}
                 </div>
