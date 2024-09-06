@@ -16,7 +16,6 @@ export default function Dashboard() {
     const [search, setSearch] = useState('');
     const [message, setMessage] = useState('');
     const [openSnack, setOpenSnack] = useState(false);
-    const [openModal, setOpenModal] = useState(false);
 
     async function listOrSearchMovies(search) {
         const url = search ? 'searchmovies' : 'listmovies';
@@ -42,14 +41,9 @@ export default function Dashboard() {
         setMessage({ texto, status: 'erro' });
     }
 
-    function showModal(movie) {
-        //setMovieSelected(movie)
-        setOpenModal(true);
-    }
-
     return (
         <div>
-            <div className={(openModal) && 'blurry'}>
+            <div>
                 <NavMenu />
 
                 <div className="form-search">
@@ -61,7 +55,6 @@ export default function Dashboard() {
                         <MoviesCard
                             key={index}
                             movie={movie}
-                            onClick={() => showModal(movie)}
                         />
                     ))}
                 </div>
