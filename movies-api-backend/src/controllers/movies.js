@@ -89,7 +89,6 @@ const searchMovies = async (req, res) => {
 const addFavorites = async (req, res) => {
     const { user } = req;
     const { movie_id } = req.params;
-    console.log(movie_id)
 
     try {
         const findFavorite = await knex('favorite_movies').where({ users_id: user.id, movies_id: movie_id }).first();
