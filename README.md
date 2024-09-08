@@ -1,6 +1,6 @@
 # Gerenciamento de Listas de Filmes
 
-Este projeto foi desenvolvido como parte do desafio para a vaga de Desenvolvedor Júnior na Vercel. O desafio consistiu em criar uma aplicação para o gerenciamento de listas de filmes, permitindo adicionar e remover favoritos. O projeto integra as stacks de frontend, backend e banco de dados, utilizando a API externa do TMDB como base para os dados dos filmes.
+Este projeto foi desenvolvido como parte do desafio para a vaga de Desenvolvedor Júnior na Verzel. O desafio consistiu em criar uma aplicação para o gerenciamento de listas de filmes, permitindo adicionar e remover favoritos. O projeto integra as stacks de frontend, backend e banco de dados, utilizando a API externa do TMDB como base para os dados dos filmes.
 
 ## Funcionalidades
 
