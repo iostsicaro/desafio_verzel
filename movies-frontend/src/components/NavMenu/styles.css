@@ -15,7 +15,7 @@
     z-index: 1;
     top: 0;
     left: 0;
-    width: 66%;
+    width: 55%;
     height: auto;
 }
 
@@ -54,7 +54,6 @@
     top: 6vh;
     left: 57vw;
     color: var(--branco);
-    background-color: transparent;
     font-size: 1.6rem;
     font-weight: 400;
     transition: 0.1s;
