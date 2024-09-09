@@ -1,0 +1,8 @@
+.share-icon {
+    position: relative;
+    bottom: 40px;
+    right: 280px;
+    height: 70px;
+    width: 50px;
+    cursor: pointer;
+}
