@@ -64,24 +64,15 @@ const searchMovies = async (req, res) => {
 
 const listFavorites = async (req, res) => {
     const { user } = req;
+
     try {
-        const findUser = await knex('favorite_movies').where({ users_id: user.id }).first();
-
-        if (!findUser) {
-            return res.status(404).json('User or favorite not found.');
+        const favoritesMovies = await knex('favorite_movies').where({ users_id: user.id });
+        
+        if (!favoritesMovies) {
+            return res.status(200).json([]);
         }
 
-        const favoriteMovies = await knex('favorite_movies')
-            .where({ users_id: user.id })
-            .join('movies', 'movies.id', '=', 'favorite_movies.movies_id')
-            .select('movies.title', 'movies.description', 'movies.popularity', 'movies.release_date', 'movies.url_image')
-            ;
-
-        if (!favoriteMovies) {
-            return res.status(404).json('Favorite movies not found');
-        }
-
-        res.status(200).json(favoriteMovies);
+        res.status(200).json(favoritesMovies);
     } catch (error) {
         const { data: { status_message }, status } = error.response;
 
@@ -103,7 +94,7 @@ const addFavorites = async (req, res) => {
                 return res.status(404).json('Movie not found.');
             }
 
-            const findFavoriteDatabase = await knex('favorite_movies').where({ users_id: user.id, movies_id: movie_id }).first();;
+            const findFavoriteDatabase = await knex('favorite_movies').where({ id: movie_id, users_id: user.id, movies_id: movie_id }).first();;
 
             if (findFavoriteDatabase) {
                 return res.status(400).json('Favorite already exists.');
@@ -111,6 +102,7 @@ const addFavorites = async (req, res) => {
 
             const addFavoriteDatabase = await knex('favorite_movies')
                 .insert({
+                    id: movie_id,
                     users_id: user.id,
                     movies_id: movie_id,
                     original_title: findFavoriteDatabase.original_title,
@@ -125,7 +117,7 @@ const addFavorites = async (req, res) => {
                 return res.status(400).json('Unable to add favorite.');
             }
         } else {
-            const findFavorite = await knex('favorite_movies').where({ users_id: user.id, movies_id: movie_id }).first();
+            const findFavorite = await knex('favorite_movies').where({ id: movie_id, users_id: user.id, movies_id: movie_id }).first();
 
             if (findFavorite) {
                 return res.status(400).json('Favorite already exists.');
@@ -133,6 +125,7 @@ const addFavorites = async (req, res) => {
 
             const addFavorite = await knex('favorite_movies')
                 .insert({
+                    id: movie_id,
                     users_id: user.id,
                     movies_id: movie_id,
                     original_title: movie.original_title,
@@ -161,13 +154,13 @@ const removeFavorite = async (req, res) => {
     const { movie_id } = req.params;
 
     try {
-        const findFavorite = await knex('favorite_movies').where({ users_id: user.id, movies_id: movie_id }).first();
+        const findFavorite = await knex('favorite_movies').where({ id: movie_id, users_id: user.id, movies_id: movie_id }).first();
 
         if (!findFavorite) {
             return res.status(404).json('Favorite not found.');
         }
 
-        const removeFavorite = await knex('favorite_movies').del().where({ users_id: user.id, movies_id: movie_id });
+        const removeFavorite = await knex('favorite_movies').del().where({ id: movie_id, users_id: user.id, movies_id: movie_id });
 
         if (!removeFavorite) {
             return res.status(400).json('Favorite not removed.')
