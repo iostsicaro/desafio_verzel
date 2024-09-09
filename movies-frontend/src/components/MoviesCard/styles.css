@@ -14,7 +14,6 @@
     border-radius: 1.2rem;
     background-color: #fff;
     box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
-    cursor: pointer;
 }
 
 .text-content {
@@ -40,9 +39,19 @@
 }
 
 .card-popularity {
-    font-size: 1rem;
+    font-size: 1.2rem;
     color: #0d8a50;
     background-color: #e6f4ea;
+    padding: 0.4rem 0.8rem;
+    margin-bottom: 10px;
+    border-radius: 0.4rem;
+    align-self: flex-start;
+}
+
+.card-release {
+    font-size: 1.2rem;
+    color: black;
+    background-color: #10ceeb6e;
     padding: 0.4rem 0.8rem;
     border-radius: 0.4rem;
     align-self: flex-start;
@@ -55,6 +64,7 @@
     margin-right: auto;
     height: 70px;
     width: 50px;
+    cursor: pointer;
 }
 
 .image-container {

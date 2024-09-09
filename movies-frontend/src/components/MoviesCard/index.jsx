@@ -16,6 +16,7 @@ export default function MoviesCard({ movie }) {
     const {
         id,
         title,
+        original_title,
         overview,
         popularity,
         release_date,
@@ -29,6 +30,21 @@ export default function MoviesCard({ movie }) {
     useEffect(() => {
         setFavoriteSelected(isFavorite(id));
     }, [id, isFavorite]);
+
+    function formatDate(release_date) {
+        const date = new Date(release_date);
+
+        if (isNaN(date)) {
+            console.error("Invalid date:", release_date);
+            return "Invalid date";
+        }
+
+        return date.toLocaleDateString('en-US', {
+            year: 'numeric',
+            month: 'long',
+            day: 'numeric'
+        });
+    }
 
     async function handleFavorite() {
         if (isFavoriteSelected) {
@@ -55,7 +71,7 @@ export default function MoviesCard({ movie }) {
             if (!response.ok) {
                 const msg = await response.json();
                 showError(msg);
-                
+
                 return false;
             }
 
@@ -95,9 +111,9 @@ export default function MoviesCard({ movie }) {
                 <div className="card-content">
                     <div className="text-content">
                         <span className="card-title">{title}</span>
-                        <span className="card-description">{overview}</span>
+                        <span className="card-description">{overview ? overview : 'Empty Description'}</span>
                         <div className="card-popularity">Popularity: {popularity}</div>
-                        <div className="card-popularity">{release_date}</div>
+                        <div className="card-release">Release date: {formatDate(release_date)}</div>
 
                         <img
                             src={isFavoriteSelected ? IconHeartFilled : IconHeart}
