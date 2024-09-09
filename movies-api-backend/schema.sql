@@ -20,8 +20,8 @@ DROP TABLE IF EXISTS movies;
 
 CREATE TABLE movies (
   id serial NOT NULL PRIMARY KEY,
-  title varchar(100) NOT NULL,
-  description varchar(8000) NOT NULL,
+  original_title varchar(100) NOT NULL,
+  overview varchar(8000) NOT NULL,
   popularity double precision NOT NULL,
   release_date DATE NOT NULL,
   url_image varchar(255)
@@ -30,11 +30,26 @@ CREATE TABLE movies (
 DROP TABLE IF EXISTS favorite_movies;
 
 CREATE TABLE favorite_movies (
-  id serial NOT NULL PRIMARY KEY,
+  id integer NOT NULL,
   users_id integer NOT NULL,
   movies_id integer NOT NULL,
+  original_title varchar(100) NOT NULL,
+  overview varchar(8000) NOT NULL,
+  popularity double precision NOT NULL,
+  release_date DATE NOT NULL,
+  url_image varchar(255),
   FOREIGN KEY (users_id) REFERENCES users (id),
   FOREIGN KEY (movies_id) REFERENCES movies (id)
+);
+
+DROP TABLE IF EXISTS share_links;
+
+CREATE TABLE share_links (
+  id serial PRIMARY KEY,
+  user_id integer NOT NULL,
+  link_token varchar(255) NOT NULL UNIQUE,
+  created_at timestamp DEFAULT current_timestamp,
+  FOREIGN KEY (user_id) REFERENCES users (id)
 );
 
 /* INSERÇÃO MANUAL DE VALORES NAS TABELAS */
