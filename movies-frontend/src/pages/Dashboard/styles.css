@@ -2,14 +2,12 @@
     display: flex;
     justify-content: flex-end;
     align-items: flex-end;
-    height: 18vh;
+    height: 16vh;
 }
 
 .form-search input {
     position: relative;
-    z-index: 8;
-    width: 27vw;
-    margin-right: 18vw;
+    width: 22vw;
 }
 
 .form-search {
@@ -22,7 +20,7 @@
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     grid-template-rows: 1fr 1fr 1fr;
-    gap: 1rem;
+    gap: 4rem;
     grid-template-areas:
         ". . ."
         ". . .";
