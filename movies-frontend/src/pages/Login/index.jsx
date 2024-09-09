@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { NavLink, useNavigate } from 'react-router-dom';
 import useAuth from '../../hooks/useAuth';
+import useMovies from '../../hooks/useMovies';
 import { post } from '../../services/MoviesApiClient';
 
 import IllustrationLogin from '../../assets/illustration-login.svg';
@@ -16,6 +17,7 @@ export default function Login() {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const { login } = useAuth();
+    const { userFavorites } = useMovies();
     const navigate = useNavigate();
 
     async function handleSubmit(event) {
@@ -44,10 +46,11 @@ export default function Login() {
                 
                 return;
             }
-
-            const { token } = await resposta.json();
-
-            login(token);
+            
+            const { token, user: { email, ...user } } = await resposta.json();
+            
+            login(token, user);
+            userFavorites(token);
 
             navigate('/movies');
         } catch (error) {
