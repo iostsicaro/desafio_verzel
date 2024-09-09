@@ -2,7 +2,7 @@ const express = require('express');
 const loginMiddleware = require('./middlewares/loginMiddleware');
 const { login } = require('./controllers/login');
 const { registerUser } = require('./controllers/user');
-const { listMovies, addFavorites, removeFavorite, searchMovies } = require('./controllers/movies');
+const { listMovies, listFavorites, addFavorites, removeFavorite, searchMovies } = require('./controllers/movies');
 const { listGenres } = require('./controllers/movieGenres');
 const { createLink, shareLink } = require('./controllers/shareMovies');
 
@@ -23,6 +23,7 @@ routes.get('/listgenres', listGenres);
 // MOVIES ROUTES
 routes.get('/listmovies', listMovies);
 routes.get('/searchmovies', searchMovies);
+routes.get('/listfavorites', listFavorites);
 routes.post('/addfavorite/:movie_id', addFavorites);
 routes.delete('/removefavorite/:movie_id', removeFavorite);
 routes.post('/createlink', createLink);
