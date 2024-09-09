@@ -4,13 +4,14 @@ import useAuth from '../../hooks/useAuth';
 
 import MoviesCard from '../../components/MoviesCard/index';
 import InputSearch from '../../components/InputSearch';
+import ShareButton from '../../components/ShareButton';
 import NavMenu from '../../components/NavMenu';
 import Snackbar from '../../components/Snackbar';
 
 import './styles.css';
 
 export default function Dashboard() {
-    const { token } = useAuth();
+    const { token, user: {id, ...user} } = useAuth();
     const [movies, setMovies] = useState([]);
     //const [movieSelected, setMovieSelected] = useState('');
     const [search, setSearch] = useState('');
@@ -48,6 +49,7 @@ export default function Dashboard() {
 
                 <div className="form-search">
                     <InputSearch placeholder={'Search movies'} value={search} setValue={setSearch} onChange={() => listOrSearchMovies(search)} />
+                    <ShareButton userId={id} />
                 </div>
 
                 <div className={`container-movies ${movies.length > 0 ? '' : 'hide'}`}>
