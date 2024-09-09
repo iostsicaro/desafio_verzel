@@ -16,7 +16,7 @@ export default function Login() {
     const [openSnack, setOpenSnack] = useState(false);
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
-    const { login } = useAuth();
+    const { login, link } = useAuth();
     const { userFavorites } = useMovies();
     const navigate = useNavigate();
 
@@ -50,7 +50,8 @@ export default function Login() {
             const { token, user: { email, ...user } } = await resposta.json();
             
             login(token, user);
-            userFavorites(token);
+            await userFavorites(token);
+            await link(token);
 
             navigate('/movies');
         } catch (error) {
