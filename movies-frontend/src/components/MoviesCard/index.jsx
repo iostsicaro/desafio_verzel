@@ -1,6 +1,7 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { del, post } from '../../services/MoviesApiClient';
 import useAuth from '../../hooks/useAuth';
+import useMovies from '../../hooks/useMovies';
 
 import Snackbar from '../../components/Snackbar';
 import IconHeart from '../../assets/icon-heart-black.svg';
@@ -10,6 +11,8 @@ import './styles.css';
 
 export default function MoviesCard({ movie }) {
     const { token } = useAuth();
+    const { addFavorite, removeFavorite, isFavorite } = useMovies();
+
     const {
         id,
         title,
@@ -19,53 +22,65 @@ export default function MoviesCard({ movie }) {
         poster_path
     } = movie;
 
-    const [isFavorite, setFavorite] = useState(false);
+    const [isFavoriteSelected, setFavoriteSelected] = useState(false);
     const [message, setMessage] = useState('');
     const [openSnack, setOpenSnack] = useState(false);
 
-    function handleFavorite() {
-        if (!isFavorite) {
-            addFavorite();
-            setFavorite(true);
-            return;
+    useEffect(() => {
+        setFavoriteSelected(isFavorite(id));
+    }, [id, isFavorite]);
+
+    async function handleFavorite() {
+        if (isFavoriteSelected) {
+            const success = await removeFavoriteDatabase();
+
+            if (success) {
+                removeFavorite(id);
+                setFavoriteSelected(false);
+            }
         } else {
-            removeFavorite();
-            setFavorite(false);
-            return;
+            const success = await addFavoriteDatabase();
+
+            if (success) {
+                addFavorite(movie);
+                setFavoriteSelected(true);
+            }
         }
     }
 
-    async function addFavorite() {
+    async function addFavoriteDatabase() {
         try {
             const response = await post(`addfavorite/${id}`, null, token);
 
             if (!response.ok) {
                 const msg = await response.json();
-
                 showError(msg);
-                return;
+                
+                return false;
             }
-            
-            return;
+
+            return true;
         } catch (error) {
             showError(error.message);
+            return false;
         }
     }
 
-    async function removeFavorite() {
+    async function removeFavoriteDatabase() {
         try {
             const response = await del(`removefavorite/${id}`, token);
 
             if (!response.ok) {
                 const msg = await response.json();
-
                 showError(msg);
-                return;
+
+                return false;
             }
 
-            return;
+            return true;
         } catch (error) {
             showError(error.message);
+            return false;
         }
     }
 
@@ -83,11 +98,12 @@ export default function MoviesCard({ movie }) {
                         <span className="card-description">{overview}</span>
                         <div className="card-popularity">Popularity: {popularity}</div>
                         <div className="card-popularity">{release_date}</div>
+
                         <img
-                            src={isFavorite ? IconHeartFilled : IconHeart}
+                            src={isFavoriteSelected ? IconHeartFilled : IconHeart}
                             alt="coração"
                             className='card-heart'
-                            onClick={() => handleFavorite()}
+                            onClick={handleFavorite}
                         />
                     </div>
                     <div className="image-container">
