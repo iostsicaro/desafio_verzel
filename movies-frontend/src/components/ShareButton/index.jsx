@@ -1,42 +1,37 @@
 import React, { useState } from 'react';
 import useAuth from '../../hooks/useAuth';
-import { post } from '../../services/MoviesApiClient';
+import { get, post } from '../../services/MoviesApiClient';
 import './styles.css';
 
 import Snackbar from '../../components/Snackbar';
 import ShareIcon from '../../assets/share-icon-solid.svg';
 
-const ShareButton = ({ userId }) => {
-    const [shareLink, setShareLink] = useState(null);
+const ShareButton = ({ userId, link }) => {
+    const [shareLink, setShareLink] = useState('');
     const [message, setMessage] = useState('');
     const [openSnack, setOpenSnack] = useState(false);
-    const { token } = useAuth();
+    const { userLink } = useAuth();
 
-    const handleShare = async () => {
-        try {
-            const response = await post('share', null, token);
-            setShareLink(response.data.shareLink);
-        } catch (error) {
-            showError(error.message);
+    function handleShare() {
+        if (shareLink) {
+            setShareLink('');
+        } else {
+            setShareLink(`${window.location.protocol}//${window.location.host}/${userLink}`);
         }
     };
 
-    function showError(texto) {
-        setOpenSnack(true);
-        setMessage({ texto, status: 'erro' });
-    }
-
     return (
-        <div className="flex-column">
-            <img
-                src={ShareIcon}
-                alt="share icon"
-                className='share-icon'
-                onClick={handleShare}
-            />
+        <div>
+            <div className={shareLink ? 'share-icon-displayed' : 'share-icon'} onClick={handleShare}>
+                <img
+                    src={ShareIcon}
+                    alt="share icon"
+                />
+            </div>
+
 
             {shareLink && (
-                <div>
+                <div className='share-icon-content'>
                     <p>Share this link with others:</p>
                     <a href={shareLink} target="_blank" rel="noopener noreferrer">{shareLink}</a>
                 </div>

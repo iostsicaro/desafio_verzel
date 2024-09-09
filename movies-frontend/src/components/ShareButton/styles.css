@@ -1,8 +1,28 @@
 .share-icon {
     position: relative;
-    bottom: 40px;
-    right: 280px;
-    height: 70px;
-    width: 50px;
+    bottom: 55px;
+    right: 120px;
+    height: 35px;
+    width: 30px;
     cursor: pointer;
+}
+
+.share-icon-displayed {
+    position: relative;
+    bottom: 32px;
+    right: 90px;
+    height: 35px;
+    width: 30px;
+    cursor: pointer;
+}
+
+.share-icon-content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+    position: relative;
+    bottom: 61px;
+    right: 50px;
+    font-size: 20px;
 }
