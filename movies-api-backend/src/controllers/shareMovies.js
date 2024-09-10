@@ -5,7 +5,7 @@ const userLink = async (req, res) => {
     const { user } = req;
 
     try {
-        const link = await knex('share_links').where({ user_id: user.id });
+        const link = await knex('share_links').where({ user_id: user.id }).first();
 
         if (!link) {
             return res.status(404).json('Link not found');

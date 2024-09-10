@@ -109,7 +109,7 @@ const addFavorites = async (req, res) => {
                     overview: findFavoriteDatabase.overview,
                     popularity: findFavoriteDatabase.popularity,
                     release_date: findFavoriteDatabase.release_date,
-                    url_image: findFavoriteDatabase.url_image
+                    url_image: findFavoriteDatabase.poster_path
                 })
             ;
 
@@ -132,7 +132,7 @@ const addFavorites = async (req, res) => {
                     overview: movie.overview,
                     popularity: movie.popularity,
                     release_date: movie.release_date,
-                    url_image: movie.url_image
+                    url_image: movie.poster_path
                 })
             ;
 
