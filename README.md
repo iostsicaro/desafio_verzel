@@ -23,10 +23,14 @@ Este projeto foi desenvolvido como parte do desafio para a vaga de Desenvolvedor
 
 ### Backend
 
-- **Node.js**: Ambiente de execução para o JavaScript no servidor.
-- **Express**: Framework para construção da API RESTful.
-- **Knex.js**: Query builder para integração com o banco de dados.
-- **PostgreSQL**: Banco de dados utilizado para armazenar as informações.
+- **Node.js**
+- **Express**
+- **Knex.js**
+- **PostgreSQL**
+- **Jsonwebtoken**
+- **dotenv**
+- **crypto**
+- **bcrypt**
 
 ### API Externa
 
@@ -47,32 +51,42 @@ Este projeto foi desenvolvido como parte do desafio para a vaga de Desenvolvedor
    cd desafio_verzel
 
 2. **Instale as dependências do backend:**
-cd movies-api-backend
-npm install
+  ```bash
+  cd movies-api-backend
+  npm install
 
-3. **Configure o banco de dados:**
+4. **Configure o banco de dados:**
 Crie um banco de dados PostgreSQL e configure as variáveis de ambiente no arquivo .env.
+  ```bash
+  DB_HOST=
+  DB_USER=
+  DB_PASSWORD=
+  DB_DATABASE=
 
-4. **Inicie o servidor backend utilizando nodemon com o seguinte script:**
-npm run dev ou npm start
+  TMDB_KEY=
 
-5. **Instale as dependências do frontend:**
-cd movies-frontend
-npm install
+  SH_SECRET=
 
-6. **Inicie o servidor frontend:**
-npm start
+5. **Inicie o servidor backend utilizando nodemon com o seguinte script:**
+  ```bash
+  npm run dev
 
-7. **Acesse a aplicação:**
+6. **Instale as dependências do frontend:**
+  ```bash
+  cd movies-frontend
+  npm install
+
+7. **Inicie o servidor frontend:**
+  ```bash
+  npm start
+
+8. **Acesse a aplicação:**
 O frontend estará disponível em http://localhost:3001
 O backend estará disponível em http://localhost:3000
 
 **Requisitos Funcionais que não foram desenvolvidos:**
-- Requisição no frontend para adicionar filme e favorito ao bando de dados. Apenas foi concluída a mudançã de estado do icon de favorito.
-- Requisição para get das imagens para os card no frontend e no backend
-- Busca de filmes no frontend
 - Deploy
-- Lógica para compartilhar a lista de favoritos via link.
+- Responsividade
 ----------------------------------------------------------------------------------------------------
 
 Contato
@@ -82,5 +96,5 @@ Nome: Ícaro Oliveira Santos
 E-mail: iostsicaro@gmail.com
 Linkedin: https://www.linkedin.com/in/santosicaro/
 
-Desenvolvido por Ícaro Oliveira Santos como parte do desafio para a vaga de Desenvolvedor Júnior na Vercel.
+Desenvolvido por Ícaro Oliveira Santos como parte do desafio para a vaga de Desenvolvedor Júnior na Verzel.
 Esse README.md cobre os aspectos principais do projeto e fornece instruções claras para que qualquer pessoa consiga rodá-lo localmente.
