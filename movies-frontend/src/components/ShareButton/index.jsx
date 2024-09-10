@@ -1,15 +1,11 @@
 import React, { useState } from 'react';
 import useAuth from '../../hooks/useAuth';
-import { get, post } from '../../services/MoviesApiClient';
 import './styles.css';
 
-import Snackbar from '../../components/Snackbar';
 import ShareIcon from '../../assets/share-icon-solid.svg';
 
 const ShareButton = ({ userId, link }) => {
     const [shareLink, setShareLink] = useState('');
-    const [message, setMessage] = useState('');
-    const [openSnack, setOpenSnack] = useState(false);
     const { userLink } = useAuth();
 
     function handleShare() {
@@ -35,14 +31,6 @@ const ShareButton = ({ userId, link }) => {
                     <p>Share this link with others:</p>
                     <a href={shareLink} target="_blank" rel="noopener noreferrer">{shareLink}</a>
                 </div>
-            )}
-
-            {message && (
-                <Snackbar
-                    message={message}
-                    openSnack={openSnack}
-                    setOpenSnack={setOpenSnack}
-                />
             )}
         </div>
     );
