@@ -1,9 +1,12 @@
-#ENDPOINTS DA API
+# ENDPOINTS DA API
 Esta API foi desenvolvida para gerenciar o sistema de filmes favoritos, incluindo funcionalidades de cadastro, login, busca de filmes, adição e remoção de favoritos, além de compartilhamento de listas.
 
 **POST /register**
-*Cria um novo usuário para o dashboard.*
-Recebe um objeto JSON com os dados do usuário no corpo da requisição.
+<p>
+    Cria um novo usuário para o dashboard.
+    Recebe um objeto JSON com os dados do usuário no corpo da requisição.
+</p>>
+
 
 **POST /login**
 Realiza o login dos usuários e gera um token de autenticação válido em conjunto com um middleware.
