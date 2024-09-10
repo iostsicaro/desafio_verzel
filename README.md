@@ -58,14 +58,14 @@ npm install
 3. **Configure o banco de dados:**
 Crie um banco de dados PostgreSQL e configure as variáveis de ambiente no arquivo .env.
   ```bash
-    DB_HOST=
-    DB_USER=
-    DB_PASSWORD=
-    DB_DATABASE=
+DB_HOST=
+DB_USER=
+DB_PASSWORD=
+DB_DATABASE=
 
-    TMDB_KEY=
+TMDB_KEY=
 
-    SH_SECRET=
+SH_SECRET=
 
 4. **Inicie o servidor backend utilizando nodemon com o seguinte script:**
   ```bash
