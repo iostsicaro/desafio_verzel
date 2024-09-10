@@ -2,7 +2,7 @@
 	"info": {
 		"_postman_id": "045b0b2b-6be2-428e-90e4-eaf812d7b0a8",
 		"name": "desafio_verzel",
-		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
 		"_exporter_id": "34452978"
 	},
 	"item": [
@@ -14,13 +14,22 @@
 					"request": {
 						"auth": {
 							"type": "bearer",
-							"bearer": {
-								"token": "{{token}}"
-							}
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
 						},
 						"method": "GET",
 						"header": [],
-						"url": "{{base_url}}listmovies"
+						"url": {
+							"raw": "{{base_url}}listmovies",
+							"host": [
+								"{{base_url}}listmovies"
+							]
+						}
 					},
 					"response": []
 				},
@@ -29,9 +38,13 @@
 					"request": {
 						"auth": {
 							"type": "bearer",
-							"bearer": {
-								"token": "{{token}}"
-							}
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
 						},
 						"method": "GET",
 						"header": [],
@@ -55,40 +68,23 @@
 					"request": {
 						"auth": {
 							"type": "bearer",
-							"bearer": {
-								"token": "{{token}}"
-							}
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
 						},
 						"method": "POST",
 						"header": [],
-						"url": "{{base_url}}addfavorite/533535"
-					},
-					"response": []
-				},
-				{
-					"name": "findmovie",
-					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": {
-								"token": "{{token}}"
-							}
-						},
-						"method": "GET",
-						"header": [],
 						"url": {
-							"raw": "{{base_url}}findmovie/:id",
+							"raw": "{{base_url}}addfavorite/533535",
 							"host": [
-								"{{base_url}}findmovie"
+								"{{base_url}}addfavorite"
 							],
 							"path": [
-								":id"
-							],
-							"variable": [
-								{
-									"key": "id",
-									"value": ""
-								}
+								"533535"
 							]
 						}
 					},
@@ -99,13 +95,49 @@
 					"request": {
 						"auth": {
 							"type": "bearer",
-							"bearer": {
-								"token": "{{token}}"
-							}
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
 						},
 						"method": "DELETE",
 						"header": [],
-						"url": "{{base_url}}removefavorite/533535"
+						"url": {
+							"raw": "{{base_url}}removefavorite/533535",
+							"host": [
+								"{{base_url}}removefavorite"
+							],
+							"path": [
+								"533535"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "listfavorites",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}listfavorites",
+							"host": [
+								"{{base_url}}listfavorites"
+							]
+						}
 					},
 					"response": []
 				}
@@ -122,14 +154,19 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n\"name\": \"Cris\",\r\n\"email\": \"cris@email.com\",\r\n\"password\": \"12345\"\r\n}",
+							"raw": "{\r\n\"name\": \"Matheus Oliveira\",\r\n\"email\": \"matheus@email.com\",\r\n\"password\": \"12345\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
 								}
 							}
 						},
-						"url": "{{base_url}}register"
+						"url": {
+							"raw": "{{base_url}}register",
+							"host": [
+								"{{base_url}}register"
+							]
+						}
 					},
 					"response": []
 				},
@@ -153,14 +190,24 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"email\": \"cris@email.com\",\r\n    \"password\": \"12345\"\r\n}",
+							"raw": "{\r\n    \"email\": \"matheus@email.com\",\r\n    \"password\": \"12345\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
 								}
 							}
 						},
-						"url": "http://localhost:3000/login"
+						"url": {
+							"raw": "http://localhost:3000/login",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"login"
+							]
+						}
 					},
 					"response": []
 				}
@@ -175,13 +222,22 @@
 					"request": {
 						"auth": {
 							"type": "bearer",
-							"bearer": {
-								"token": "{{token}}"
-							}
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
 						},
 						"method": "GET",
 						"header": [],
-						"url": "{{base_url}}listgenres"
+						"url": {
+							"raw": "{{base_url}}listgenres",
+							"host": [
+								"{{base_url}}listgenres"
+							]
+						}
 					},
 					"response": []
 				}
@@ -198,8 +254,7 @@
 							"listen": "test",
 							"script": {
 								"exec": [
-									"let res = pm.response.json();\r",
-									"pm.collectionVariables.set('share_link', res.link_token);"
+									""
 								],
 								"type": "text/javascript",
 								"packages": {}
@@ -209,13 +264,22 @@
 					"request": {
 						"auth": {
 							"type": "bearer",
-							"bearer": {
-								"token": "{{token}}"
-							}
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
 						},
 						"method": "POST",
 						"header": [],
-						"url": "{{base_url}}createlink"
+						"url": {
+							"raw": "{{base_url}}createlink",
+							"host": [
+								"{{base_url}}createlink"
+							]
+						}
 					},
 					"response": []
 				},
@@ -235,14 +299,43 @@
 					],
 					"request": {
 						"auth": {
-							"type": "bearer",
-							"bearer": {
-								"token": "{{token}}"
-							}
+							"type": "noauth"
 						},
 						"method": "GET",
 						"header": [],
-						"url": "{{base_url}}{{link_token}}"
+						"url": {
+							"raw": "{{base_url}}share/3379f710838a6c4466f9008342ba91d9",
+							"host": [
+								"{{base_url}}share"
+							],
+							"path": [
+								"3379f710838a6c4466f9008342ba91d9"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "userlink",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}userlink",
+							"host": [
+								"{{base_url}}userlink"
+							]
+						}
 					},
 					"response": []
 				}
@@ -280,11 +373,6 @@
 		},
 		{
 			"key": "token",
-			"value": "",
-			"type": "string"
-		},
-		{
-			"key": "link_token",
 			"value": "",
 			"type": "string"
 		},
