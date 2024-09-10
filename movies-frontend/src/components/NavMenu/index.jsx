@@ -3,13 +3,12 @@ import useAuth from '../../hooks/useAuth';
 import useMovies from '../../hooks/useMovies';
 
 import Avatar from '../../assets/avatar.png';
-import Illustration from '../../assets/illustration-header.svg';
 import HeadImagem from '../../assets/bg-dashboard.jpg';
 
 import './styles.css';
 
 export default function NavMenu() {
-    const { logout } = useAuth();
+    const { logout, user } = useAuth();
     const { clearFavorites } = useMovies();
 
     function handleLogout() {
@@ -24,8 +23,6 @@ export default function NavMenu() {
                 style={{ backgroundImage: `url(${HeadImagem})` }}
             />
 
-            <img className="dash-ilustracao" src={Illustration} alt="Ilustração" />
-
             <div className="avatar-borda">
                 <img
                     className="avatar"
@@ -36,7 +33,7 @@ export default function NavMenu() {
 
             <div className="localizar-titulo">
                 <span className="titulo sombreado">
-                    Fav Movies
+                    Bem-vindo, {user.name}!! Fav Movies
                 </span>
 
                 <button

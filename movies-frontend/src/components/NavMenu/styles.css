@@ -36,12 +36,12 @@
     cursor: pointer;
 }
 
-.avatar{
+.avatar {
     height: 17.6rem;
     width: auto;
 }
 
-.localizar-titulo{
+.localizar-titulo {
     position: absolute;
     top: 18vh;
     left: 23vw;
@@ -49,18 +49,19 @@
     font-size: 4rem;
 }
 
-.botao-logout{
+.botao-logout {
     position: absolute;
+    background-color: #FF6347;
     top: 6vh;
     left: 57vw;
+    padding: 10px 20px;
     color: var(--branco);
-    font-size: 1.6rem;
-    font-weight: 400;
-    transition: 0.1s;
+    font-size: 16px;
     cursor: pointer;
+    font-weight: 400;
 }
 
-.botao-logout:hover{
+.botao-logout:hover {
     transform: scale(1.06);
 }
 
