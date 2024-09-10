@@ -1,26 +1,39 @@
-ENDPOINTS DA API
-POST /register
-Endpoint para atender a funcionalidade de criar um novo usuário para o dashboard. Ele deverá receber os dados do usuário através de objeto JSON no corpo da requisição no formato abaixo.
+#ENDPOINTS DA API
+Esta API foi desenvolvida para gerenciar o sistema de filmes favoritos, incluindo funcionalidades de cadastro, login, busca de filmes, adição e remoção de favoritos, além de compartilhamento de listas.
 
-POST /login
-Endpoint para realização de login dos usuários no dashboard, de forma que realize:
+**POST /register**
+Cria um novo usuário para o dashboard.
+Recebe um objeto JSON com os dados do usuário no corpo da requisição.
 
-A autenticação dos usuários, gerando e retornando token válido como resposta
+**POST /login**
+Realiza o login dos usuários e gera um token de autenticação válido em conjunto com um middleware.
 
-GET /listgenres
-Endpoint para retornar uma lista de todos generos cadastrados no banco de dados.
+**GET /listgenres**
+Retorna a lista de todos os gêneros cadastrados no banco de dados.
 
-GET /produtos/:id
-Endpoint para retornar os detalhes de um produto em específico.
+**GET /listmovies**
+Retorna uma lista de filmes populares da API TMDB e insere alguns livros no banco de dados caso a api externa não retorne filmes.
 
-GET /listmovies
-Endpoint para retornar uma lista de todos os filmes vindos pela API do TMDB.
+**GET /searchmovies**
+Realiza a busca de filmes a partir de uma query string na API do TMDB.
 
-GET /searchmovies
-Endpoint para retornar uma lista de todos os filmes procurados pelo usuário a partir de uma query com retorno vindo pela API do TMDB.
+**GET /listfavorites**
+Retorna uma lista dos filmes favoritados pelo usuário.
 
-POST /add-favorite
-Endpoint para adicionar filme favoritado com relação de normalização entre a tabela de usuário e filmes.
+**POST /addfavorite/:movie_id**
+Adiciona um filme à lista de favoritos do usuário, associando o filme ao usuário no banco de dados.
+Recebe o movie_id como parâmetro de rota.
 
-DELETE /remove-favorite/:id
-Endpoint para excluir um filme e favorito existente. Não deverá receber conteúdo no corpo da requisição, mas deverá receber o ID do filme através de parâmetro de rota (params).
+**DELETE /removefavorite/:movie_id**
+Remove um filme da lista de favoritos do usuário.
+Recebe o movie_id como parâmetro de rota.
+
+**GET /share/:link_token**
+Permite compartilhar a lista de filmes favoritos através de um token gerado.
+Recebe o link_token como parâmetro de rota.
+
+**POST /createlink**
+Cria um link de compartilhamento para a lista de filmes favoritos do usuário.
+
+**GET /userlink**
+Retorna o link gerado para compartilhamento dos filmes favoritados do usuário.
