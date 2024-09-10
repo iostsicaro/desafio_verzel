@@ -2,7 +2,7 @@
 Esta API foi desenvolvida para gerenciar o sistema de filmes favoritos, incluindo funcionalidades de cadastro, login, busca de filmes, adição e remoção de favoritos, além de compartilhamento de listas.
 
 **POST /register**
-Cria um novo usuário para o dashboard.
+*Cria um novo usuário para o dashboard.*
 Recebe um objeto JSON com os dados do usuário no corpo da requisição.
 
 **POST /login**
