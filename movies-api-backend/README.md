@@ -2,8 +2,10 @@
 Esta API foi desenvolvida para gerenciar o sistema de filmes favoritos, incluindo funcionalidades de cadastro, login, busca de filmes, adição e remoção de favoritos, além de compartilhamento de listas.
 
 **POST /register**
-<p>Cria um novo usuário para o dashboard.</p>
-<p>Recebe um objeto JSON com os dados do usuário no corpo da requisição.</p>
+<p>
+  Cria um novo usuário para o dashboard.
+  Recebe um objeto JSON com os dados do usuário no corpo da requisição.
+</p>
 
 **POST /login**
 <p>Realiza o login dos usuários e gera um token de autenticação válido em conjunto com um middleware.</p>
@@ -21,16 +23,22 @@ Esta API foi desenvolvida para gerenciar o sistema de filmes favoritos, incluind
 <p>Retorna uma lista dos filmes favoritados pelo usuário.</p>
 
 **POST /addfavorite/:movie_id**
-<p>Adiciona um filme à lista de favoritos do usuário, associando o filme ao usuário no banco de dados.</p>
-<p>Recebe o movie_id como parâmetro de rota.</p>
+<p>
+  Adiciona um filme à lista de favoritos do usuário, associando o filme ao usuário no banco de dados.
+  Recebe o movie_id como parâmetro de rota.
+</p>
 
 **DELETE /removefavorite/:movie_id**
-<p>Remove um filme da lista de favoritos do usuário.</p>
-<p>Recebe o movie_id como parâmetro de rota.</p>
+<p>
+  Remove um filme da lista de favoritos do usuário.
+  Recebe o movie_id como parâmetro de rota.
+</p>
 
 **GET /share/:link_token**
-<p>Permite compartilhar a lista de filmes favoritos através de um token gerado.</p>
-<p>Recebe o link_token como parâmetro de rota.</p>
+<p>
+  Permite compartilhar a lista de filmes favoritos através de um token gerado.
+  Recebe o link_token como parâmetro de rota.
+</p>
 
 **POST /createlink**
 <p>Cria um link de compartilhamento para a lista de filmes favoritos do usuário.</p>
