@@ -22,7 +22,7 @@ function AppRoutes() {
                             <Route path="/movies" element={<Dashboard />} />
                         </Route>
 
-                        <Route path="/:link_token" element={<FavoritesDashboard />} />
+                        <Route path="/share/:link_token" element={<FavoritesDashboard />} />
                     </Routes>
                 </Router>
             </MoviesProvider>
