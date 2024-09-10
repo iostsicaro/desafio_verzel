@@ -16,7 +16,7 @@ const ShareButton = ({ userId, link }) => {
         if (shareLink) {
             setShareLink('');
         } else {
-            setShareLink(`${window.location.protocol}//${window.location.host}/${userLink}`);
+            setShareLink(`${window.location.protocol}//${window.location.host}/share/${userLink}`);
         }
     };
 
