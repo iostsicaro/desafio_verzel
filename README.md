@@ -52,37 +52,37 @@ Este projeto foi desenvolvido como parte do desafio para a vaga de Desenvolvedor
 
 2. **Instale as dependências do backend:**
   ```bash
-  cd movies-api-backend
-  npm install
+    cd movies-api-backend
+    npm install
 
-4. **Configure o banco de dados:**
+3. **Configure o banco de dados:**
 Crie um banco de dados PostgreSQL e configure as variáveis de ambiente no arquivo .env.
   ```bash
-  DB_HOST=
-  DB_USER=
-  DB_PASSWORD=
-  DB_DATABASE=
+    DB_HOST=
+    DB_USER=
+    DB_PASSWORD=
+    DB_DATABASE=
 
-  TMDB_KEY=
+    TMDB_KEY=
 
-  SH_SECRET=
+    SH_SECRET=
 
-5. **Inicie o servidor backend utilizando nodemon com o seguinte script:**
+4. **Inicie o servidor backend utilizando nodemon com o seguinte script:**
   ```bash
-  npm run dev
+    npm run dev
 
-6. **Instale as dependências do frontend:**
+5. **Instale as dependências do frontend:**
   ```bash
-  cd movies-frontend
-  npm install
+    cd movies-frontend
+    npm install
 
-7. **Inicie o servidor frontend:**
+6. **Inicie o servidor frontend:**
   ```bash
-  npm start
+    npm start
 
-8. **Acesse a aplicação:**
-O frontend estará disponível em http://localhost:3001
-O backend estará disponível em http://localhost:3000
+7. **Acesse a aplicação:**
+  O frontend estará disponível em http://localhost:3001
+  O backend estará disponível em http://localhost:3000
 
 **Requisitos Funcionais que não foram desenvolvidos:**
 - Deploy
