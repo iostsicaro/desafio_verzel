@@ -6,16 +6,17 @@ const { listMovies, listFavorites, addFavorites, removeFavorite, searchMovies } 
 const { listGenres } = require('./controllers/movieGenres');
 const { userLink, createLink, shareLink } = require('./controllers/shareMovies');
 
+
 const routes = express();
+
+// FAVORITES MOVIES SHARED
+routes.get('/share/:link_token', shareLink);
 
 // USER REGISTER ROUTE
 routes.post('/register', registerUser);
 
 // LOGIN ROUTE
 routes.post('/login', login);
-
-// FAVORITES MOVIES SHARED
-routes.get('/:link_token', shareLink);
 
 // MIDDLEWARE VERIFYING LOGIN
 routes.use(loginMiddleware);
