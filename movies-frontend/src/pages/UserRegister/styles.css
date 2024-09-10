@@ -37,15 +37,15 @@
 .button-box {
     display: flex;
     gap: 1.6rem;
+    padding-top: 35px;
 }
 
 .link-box {
-    margin-bottom: 2rem;
+    margin-top: 2rem;
     color: var(--cinza-azulado);
     font-size: 1.2rem;
     display: flex;
     gap: 1rem;
-    margin-bottom: 6rem;
 }
 
 span {

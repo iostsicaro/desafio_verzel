@@ -3,7 +3,6 @@ import { useParams } from 'react-router-dom';
 import { get } from '../../services/MoviesApiClient';
 
 import InputSearch from '../../components/InputSearch';
-import NavMenu from '../../components/NavMenu';
 import Snackbar from '../../components/Snackbar';
 import Illustration from '../../assets/illustration-header.svg';
 import HeadImagem from '../../assets/bg-dashboard.jpg';

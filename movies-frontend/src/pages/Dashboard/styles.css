@@ -28,6 +28,38 @@
     width: 100%;
 }
 
+.select-favorites-btn {
+    position: relative;
+    bottom: 55px;
+    right: 35px;
+    background-color: #FF6347;
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    color: white;
+    cursor: pointer;
+    margin-top: 10px;
+    transition: background-color 0.3s ease;
+}
+
+.select-favorites-btn-link {
+    position: relative;
+    bottom: 55px;
+    right: 35px;
+    background-color: #FF6347;
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    color: white;
+    cursor: pointer;
+    margin-top: 10px;
+    transition: background-color 0.3s ease;
+}
+
+.select-favorites-btn:hover {
+    background-color: #FF4500;
+}
+
 .hide {
     padding: 0;
     height: 0%;
