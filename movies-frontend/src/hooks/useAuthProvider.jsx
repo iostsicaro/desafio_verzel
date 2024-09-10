@@ -39,7 +39,7 @@ export default function useAuthProvider() {
                     setStoredUserLink(link_token);
                 } else {
                     const { link_token } = await response.json();
-
+                    
                     setUserLink(link_token);
                     setStoredUserLink(link_token);
                 }
