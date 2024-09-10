@@ -52,8 +52,8 @@ Este projeto foi desenvolvido como parte do desafio para a vaga de Desenvolvedor
 
 2. **Instale as dependências do backend:**
   ```bash
-    cd movies-api-backend
-    npm install
+cd movies-api-backend
+npm install
 
 3. **Configure o banco de dados:**
 Crie um banco de dados PostgreSQL e configure as variáveis de ambiente no arquivo .env.
