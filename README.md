@@ -51,38 +51,37 @@ Este projeto foi desenvolvido como parte do desafio para a vaga de Desenvolvedor
    cd desafio_verzel
 
 2. **Instale as dependências do backend:**
-  ```bash
-cd movies-api-backend
-npm install
+   ```bash
+   cd movies-api-backend
+   npm install
 
-3. **Configure o banco de dados:**
-Crie um banco de dados PostgreSQL e configure as variáveis de ambiente no arquivo .env.
-  ```bash
-DB_HOST=
-DB_USER=
-DB_PASSWORD=
-DB_DATABASE=
+3. **Configure o banco de dados: Crie um banco de dados PostgreSQL e configure as variáveis de ambiente no arquivo .env.**
+   ```bash
+   DB_HOST=
+   DB_USER=
+   DB_PASSWORD=
+   DB_DATABASE=
 
-TMDB_KEY=
+   TMDB_KEY=
 
-SH_SECRET=
+   SH_SECRET=
 
 4. **Inicie o servidor backend utilizando nodemon com o seguinte script:**
-  ```bash
-    npm run dev
+   ```bash
+   npm run dev
 
 5. **Instale as dependências do frontend:**
-  ```bash
-    cd movies-frontend
-    npm install
+   ```bash
+   cd movies-frontend
+   npm install
 
 6. **Inicie o servidor frontend:**
-  ```bash
-    npm start
+   ```bash
+   npm start
 
 7. **Acesse a aplicação:**
-  O frontend estará disponível em http://localhost:3001
-  O backend estará disponível em http://localhost:3000
+   O frontend estará disponível em http://localhost:3001
+   O backend estará disponível em http://localhost:3000
 
 **Requisitos Funcionais que não foram desenvolvidos:**
 - Deploy
